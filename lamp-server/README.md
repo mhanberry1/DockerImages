@@ -16,7 +16,7 @@ If you would like to have a non-volatile mysql database, do the following:
 3. When you want to use this volume, launch it using `docker run -v <volume-name>:/var/lib/mysql -p <host-port>:3306 -p <host-port>:80 lamp-server`.
 Otherwise, launch a volatile lamp-server instance using `docker run -p <host-port>:3306 -p <host-port>:80 lamp-server`.
 ### Additional Resources
-* [Docker][https://www.docker.com]
-* [Apache 2][https://www.httpd.apache.org/docs]
-* [MySQL][https://www.mysql.com]
-* [PHP][https://www.secure.php.net]
+* [Docker](https://www.docker.com)
+* [Apache 2](https://www.httpd.apache.org/docs)
+* [MySQL](https://www.mysql.com)
+* [PHP](https://www.secure.php.net)

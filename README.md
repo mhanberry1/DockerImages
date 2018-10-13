@@ -11,5 +11,5 @@ Most images can be build simply by navigating to the appropriate directory and r
 ### Running
 All images can be run using `docker run <image-name>`. Recommendations on how to create non-volatile volumes can be found in each directory's `README.md` file.
 ### Additional Resources
-* [Docker][https://www.docker.com]
-* [Alpine][https://www.alpinelinux.org]
+* [Docker](https://www.docker.com)
+* [Alpine](https://www.alpinelinux.org)

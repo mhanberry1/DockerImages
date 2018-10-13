@@ -13,5 +13,5 @@ If you would like to have a non-volatile mysql database, do the following:
 3. When you want to use this volume, launch it using `docker run -v <volume-name>:/var/lib/mysql -p <host-port>:3306 mysql-server`.
 Otherwise, launch a volatile mysql-server instance using `docker run -p <host-port>:3306 mysql-server`.
 ### Additional Resources
-* [Docker][https://www.docker.com]
-* [MySQL][https://www.mysql.com]
+* [Docker](https://www.docker.com)
+* [MySQL](https://www.mysql.com)
