@@ -5,7 +5,7 @@
 ### Description
 This project contains the code necessary to build a variety of common utilities as docker images. Every image is based off of alpine linux for maximum efficiency.
 ### Dependencies
-* [Docker][https://docs.docker.com/install/]
+* [Docker](https://docs.docker.com/install)
 ### Building
 Most images can be build simply by navigating to the appropriate directory and running `docker build -t <image-name> .`. There are some images which contain user-defined variables. Check out the `README.md` file in each directory for further instructions.
 ### Running
