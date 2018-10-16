@@ -1,26 +1,35 @@
 from alpine
-workdir /home/git
 
-add id_rsa.pub /tmp
+# User defined variables
+arg GIT_PASS="changeme"
+
+# Add files
+add authorized_keys /tmp
+add newrepo.sh /tmp
 
 run \
-	# Creat git user
-	adduser -D git && \
-	# Create filesystem
-	mkdir .ssh && chmod 700 .ssh && \
-	touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys && \
 	# Install dependencies
-	apk add --no-cache openssh-server && \
+	apk --no-cache add openssh-server git && \
+	# Create run directory
+	mkdir /run/sshd && \
+	# Generate keys
+	ssh-keygen -A && \
+	# Create git user
+	adduser -D git && \
+	echo git:"$GIT_PASS" | chpasswd && \
+	# Add authorized keys
+	mkdir --mode=700 /home/git/.ssh && \
+	mv /tmp/authorized_keys /home/git/.ssh && \
+	chown -R git:git /home/git/.ssh && \
+	chmod 600 /home/git/.ssh/authorized_keys && \
+	# Create /git directory
+	mkdir --mode=700 /git && \
+	chown git:git /git && \
 	# Configure ssh
 	echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
-	echo "AllowUsers root git" >> /etc/ssh/sshd_config && \
-	cat /tmp/id_rsa.pub >> /home/git/.ssh/authorized_keys && \
-	mkdir /root/.ssh && \
-	cat /tmp/id_rsa.pub >> /root/.ssh/authorized_keys && \
-	ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa && \
-	ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa && \
-	mkdir -p /var/run/sshd && \
-	# Clean up
-	rm /tmp/*
+	# Create newrepo command
+	mv /tmp/newrepo.sh /usr/bin/newrepo && \
+	chmod 755 /usr/bin/newrepo
 
+# Run the ssh daemon
 cmd /usr/sbin/sshd -D
