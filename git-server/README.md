@@ -1,7 +1,7 @@
 ###### author: Madison Hanberry
 ###### contact: mhanberry@protonmail.com
 ###### license: GPL-2.0+
-# MySQL Server
+# Git Server
 ### Description
 This directory contains the Dockerfile used to build a  git-server image.
 ### Building
