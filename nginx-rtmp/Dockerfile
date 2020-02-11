@@ -14,6 +14,8 @@ run \
 run \
 	cd nginx-1.15.1 && \
 	./configure --with-http_ssl_module --add-module=../nginx-rtmp-module-dev && \
-	make && \
+	make -j`nproc` && \
 	make install && \
 	cat /tmp/nginx.conf >> /usr/local/nginx/conf/nginx.conf
+
+cmd /usr/local/nginx/sbin/nginx -g 'daemon off;'
