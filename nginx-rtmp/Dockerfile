@@ -1,5 +1,9 @@
 from ubuntu
 
+add nginx.conf /tmp/nginx.conf
+
+workdir /app
+
 run \
 	apt update && \
 	apt install -y wget unzip build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev && \
@@ -11,9 +15,5 @@ run \
 	cd nginx-1.15.1 && \
 	./configure --with-http_ssl_module --add-module=../nginx-rtmp-module-dev && \
 	make && \
-	make install
-
-add nginx.conf /tmp/nginx.conf
-
-run \
+	make install && \
 	cat /tmp/nginx.conf >> /usr/local/nginx/conf/nginx.conf
